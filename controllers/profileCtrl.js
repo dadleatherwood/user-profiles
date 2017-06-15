@@ -2,12 +2,12 @@ module.exports = {
   getFriendsProfiles : function(req, res, next){
     var profileArr = []
     for (var i = 0; i < req.session.currentUser.friends.length; i++){
-      var matchingUser = profiles.find(function(cur){
-        return cur.name === req.session.currentUser.friends[i]
-      })
-      profileArr.push(matchingUser)
-    }
-    return res.status(200).json(profileArr)
+      for (var j = 0; j < profiles.length; j++){
+        if(req.session.currentUser.friends[i] === profiles[j].name){
+          profileArr.push(profiles[j])
+        }
+      }
+    } return res.status(200).json({friends: profileArr, currentUser: req.session.currentUser})
   }
 }
 var profiles = [

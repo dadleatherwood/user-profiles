@@ -11,7 +11,7 @@ var app = express()
 app.use(cors(corsOptions))
 app.use(session({secret: config.sessionSecret}))
 app.use(bodyParser.json())
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
 
 var corsOptions = {
